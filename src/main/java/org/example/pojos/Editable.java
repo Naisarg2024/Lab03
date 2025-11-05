@@ -2,7 +2,7 @@ package org.example.pojos;
 import java.util.Scanner;
 import java.time.LocalDate;
 public abstract class Editable {
-    private Scanner input = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
 
     public String getInput() {
         return input.nextLine();

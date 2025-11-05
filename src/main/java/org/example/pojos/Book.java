@@ -79,7 +79,7 @@ public class Book extends Publication{
     }
 
     @Override
-    public void sellItem() {
+    public void sellCopy() {
         if (getCopies() > 0) {
             setCopies(getCopies() - 1);
             System.out.println("Sold 1 book: " + getTitle() + " by " + author);

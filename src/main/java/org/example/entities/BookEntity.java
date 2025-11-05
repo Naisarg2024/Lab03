@@ -89,7 +89,7 @@ public class BookEntity extends PublicationEntity {
     }
 
     @Override
-    public void sellItem() {
+    public void sellCopy() {
 
     }
 

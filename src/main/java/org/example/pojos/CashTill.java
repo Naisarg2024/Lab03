@@ -12,7 +12,7 @@ public class CashTill {
             return;
         }
         System.out.println("Processing...");
-        item.sellItem();
+        item.sellCopy();
         runningTotal += item.getPrice();
         System.out.printf("Added $%.2f to till.%n", item.getPrice());
         showTotal();

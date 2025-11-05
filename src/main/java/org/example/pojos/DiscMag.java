@@ -41,8 +41,8 @@ public class DiscMag extends Magazine{
     }
 
     @Override
-    public void sellItem() {
-        super.sellItem();
+    public void sellCopy() {
+        super.sellCopy();
         System.out.println("Includes disc: " + hasDisc);
     }
 }

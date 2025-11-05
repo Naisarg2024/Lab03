@@ -1,69 +1,9 @@
-//package org.example;
-//
-//import java.util.Scanner;
-//
-//public class App {
-//    private final Scanner scanner = new Scanner(System.in);
-//
-//    public void run() {
-//        boolean running = true;
-//        while (running) {
-//            System.out.println("********************");
-//            System.out.println(" 1. Add Items");
-//            System.out.println(" 2. Edit Items");
-//            System.out.println(" 3. Delete Items");
-//            System.out.println(" 4. Sell item(s)");
-//            System.out.println(" 5. List items");
-//            System.out.println("99. Quit");
-//            System.out.println("********************");
-//            System.out.print("Enter choice: ");
-//            String choice = scanner.nextLine().trim();
-//            switch (choice) {
-//                case "1" -> MenuItem();
-//                case "2" -> System.out.println("... Edit Items functionality will be implemented here ...");
-//                case "3" -> System.out.println("... Delete Items functionality will be implemented here ...");
-//                case "4" -> System.out.println("... Sell items functionality will be implemented here ...");
-//                case "5" -> System.out.println("... List items functionality will be implemented here ...");
-//                case "99" -> {
-//                    System.out.println("Exiting...");
-//                    running = false;
-//                }
-//                default -> System.out.println("Invalid choice, (valid options are 1 to 5 and 99 to quit)");
-//            }
-//        }
-//    }
-//
-//    private void MenuItem() {
-//        boolean flag = false;
-//        while (!flag) {
-//            System.out.println("\nAdd an item");
-//            System.out.println("1. Add a Book");
-//            System.out.println("2. Add a Magazine");
-//            System.out.println("3. Add a DiscMag");
-//            System.out.println("4. Add a Ticket");
-//            System.out.println("99. Exit app");
-//            System.out.print("Enter choice: ");
-//            String c = scanner.nextLine().trim();
-//            switch (c) {
-//                case "1" -> System.out.println("....Add Book functionality will be implemented here....");
-//                case "2" -> System.out.println("....Add Magazine functionality will be implemented here....");
-//                case "3" -> System.out.println("....Add DiscMag functionality will be implemented here....");
-//                case "4" -> System.out.println("....Add Ticket functionality will be implemented here....");
-//                case "99" -> {
-//                    System.out.println("Redirecting to main menu...");
-//                    flag = true;
-//                }
-//                default -> System.out.println("Invalid choice (valid options are 1 to 4 and 99 to exit)");
-//            }
-//        }
-//    }
-//}
 package org.example;
 
 import org.example.entities.BookEntity;
 import org.example.entities.ProductEntity;
-import org.example.entities.PublicationEntity;
 import jakarta.persistence.*;
+import org.example.entities.TicketEntity;
 
 import java.util.List;
 
@@ -75,6 +15,8 @@ public class App {
         emf = Persistence.createEntityManagerFactory("product-pu");
         populateDatabase();
         listAllProducts();
+        listAllBooks();
+        listAllTickets();
     }
 
     public void populateDatabase() {
@@ -95,8 +37,24 @@ public class App {
                     "String isbn_10",
                     "String description",
                     "String author");
+            BookEntity b2 = new BookEntity(
+                    "NJP",
+                    19.99,
+                    100,
+                    "ISBN440832",
+                    "A book written by Naisarg",
+                    "Naisarg Patel"
+            );
+            TicketEntity t=new TicketEntity("NJP",
+                    19.99,
+                    100,
+                    440832,
+                    "A book written by Naisarg",
+                    "Naisarg Patel");
 
             em.persist(b);
+            em.persist(b2);
+            em.persist(t);
 
             tx.commit(); // Commit the transaction
             System.out.println("Population complete.");
@@ -110,7 +68,6 @@ public class App {
             // Always close the EntityManager
             em.close();
         }
-
     }
 
     private void listAllProducts() {
@@ -124,6 +81,40 @@ public class App {
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }finally {
+            em.close();
+        }
+    }
+
+    // listing all books
+    private void listAllBooks() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            List<BookEntity> books =
+                    em.createQuery("SELECT b FROM BookEntity b", BookEntity.class)
+                            .getResultList();
+            System.out.println("\nList of Books:");
+            System.out.println("---------------------");
+            for (BookEntity b : books) {
+                System.out.println(b);
+            }
+        } finally {
+            em.close();
+        }
+    }
+
+    // listing all tickets
+    private void listAllTickets() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            List<TicketEntity> tickets =
+                    em.createQuery("SELECT t FROM TicketEntity t", TicketEntity.class)
+                            .getResultList();
+            System.out.println("\nList of Tickets:");
+            System.out.println("-------------------");
+            for (TicketEntity t : tickets) {
+                System.out.println(t);
+            }
+        } finally {
             em.close();
         }
     }
@@ -147,9 +138,6 @@ public class App {
         TypedQuery<ProductEntity> query = em.createQuery(jpql, ProductEntity.class);
 
         // 3. Execute the query to get the list of results.
-
-
         return query.getResultList();
     }
-
 }

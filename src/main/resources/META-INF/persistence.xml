@@ -10,13 +10,14 @@
         <class>org.example.entities.BookEntity</class>
         <class>org.example.entities.PublicationEntity</class>
         <class>org.example.entities.ProductEntity</class>
+        <class>org.example.entities.TicketEntity</class>
 
         <properties>
             <!-- Database Connection Details -->
-            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3333/csd214_from_pojo_to_entity?createDatabaseIfNotExist=true"/>
-            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3333/csd214-lab0?createDatabaseIfNotExist=true"/>
+            <property name="jakarta.persistence.jdbc.user" value="csd214"/>
             <property name="jakarta.persistence.jdbc.password" value="itstudies12345"/>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
 
             <!-- Hibernate Properties -->
             <!-- This is the magic: Hibernate will create/update the table for you! -->
