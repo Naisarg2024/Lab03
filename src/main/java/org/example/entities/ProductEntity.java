@@ -38,10 +38,6 @@ public abstract class ProductEntity extends Editable implements Serializable, Sa
     public ProductEntity() {
         setProductId(UUID.randomUUID().toString());
     }
-//
-//    public ProductEntity(String productId) {
-//        this.productId = productId;
-//    }
 
     @Column(name = "product_id")
     private String productId;

@@ -29,4 +29,52 @@
             <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
+    <!-- Your existing MySQL persistence unit -->
+    <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>org.example.entities.BookEntity</class>
+        <class>org.example.entities.PublicationEntity</class>
+        <class>org.example.entities.ProductEntity</class>
+        <class>org.example.entities.TicketEntity</class>
+        <class>org.example.entities.MagazineEntity</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3333/csd214-lab0"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="itstudies12345"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!--            <property name="hibernate.show_sql" value="true"/>-->
+            <!--            <property name="hibernate.format_sql" value="true"/>-->
+        </properties>
+    </persistence-unit>
+
+    <!-- NEW H2 PERSISTENCE UNIT -->
+    <persistence-unit name="h2" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>org.example.entities.BookEntity</class>
+        <class>org.example.entities.PublicationEntity</class>
+        <class>org.example.entities.ProductEntity</class>
+        <class>org.example.entities.TicketEntity</class>
+        <class>org.example.entities.MagazineEntity</class>
+        <properties>
+            <!-- H2 Driver -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <!-- In-memory database URL. "mem:testdb" creates a private in-memory DB. -->
+            <!-- DB_CLOSE_DELAY=-1 prevents the DB from being cleared as long as the VM is alive. -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1"/>
+            <property name="jakarta.persistence.jdbc.user" value="sa"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+
+            <!-- H2 Dialect for Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+
+            <!-- Create and drop the schema on startup/shutdown. Perfect for testing. -->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+
+            <!-- Optional: Show SQL for debugging -->
+            <!--            <property name="hibernate.show_sql" value="true"/>-->
+            <!--            <property name="hibernate.format_sql" value="true"/>-->
+        </properties>
+    </persistence-unit>
 </persistence>
