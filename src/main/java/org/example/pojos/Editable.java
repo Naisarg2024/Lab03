@@ -3,6 +3,10 @@ import java.util.Scanner;
 import java.time.LocalDate;
 public abstract class Editable {
     private final Scanner input = new Scanner(System.in);
+    private String title;
+    private int copies;
+    private double price;
+    private String description;
 
     public String getInput() {
         return input.nextLine();

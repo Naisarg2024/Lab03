@@ -6,8 +6,13 @@ import java.util.UUID;
 
 @Entity
 public class TicketEntity extends ProductEntity {
+    @Column(name = "author")
     private String author;
+
+    @Column(name = "isbn")
     private long isbn;
+
+    @Column(name = "copies", nullable = false)
     private int copies;
 
     @Column(name = "description")

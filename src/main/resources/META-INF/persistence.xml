@@ -11,7 +11,7 @@
         <class>org.example.entities.PublicationEntity</class>
         <class>org.example.entities.ProductEntity</class>
         <class>org.example.entities.TicketEntity</class>
-
+        <class>org.example.entities.MagazineEntity</class>
         <properties>
             <!-- Database Connection Details -->
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3333/csd214-lab0?createDatabaseIfNotExist=true"/>
