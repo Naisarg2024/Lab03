@@ -72,7 +72,7 @@ public class BookEntity extends PublicationEntity {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
